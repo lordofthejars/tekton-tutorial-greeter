@@ -1,23 +1,22 @@
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: greeter
 spec:
   selector:
-    # to avoid missing label selectors use YAML aliases
-    matchLabels: &labels
+    matchLabels:
       app: greeter
   template:
     metadata:
-      labels: *labels
+      labels:
+        app: greeter
     spec:
       containers:
         - name: greeter
-          image: example.com/rhdevelopers/tekton-tutorial-greeter
+          image: quay.io/rhdevelopers/tekton-tutorial-greeter:springboot
           resources:
             limits:
-              memory: "750Mi"
-              cpu: "500m"
+              memory: "500Mi"
+              cpu: "1"
           ports:
             - containerPort: 8080
